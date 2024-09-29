@@ -15,6 +15,8 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
+
+    //映し出すためのメソッド
     public function create(): View
     {
         return view('auth.login');
@@ -23,13 +25,28 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
+    //ログイン機能のためのメソッド
     public function store(LoginRequest $request): RedirectResponse
     {
+        //POST通信でフォームから値が送られる場合は、引数に用意してある$request変数の中に値(パラメータ)が渡される
         $request->authenticate();
 
         $request->session()->regenerate();
 
+        //ユーザーをログイン後に特定のページにリダイレクトするためのコード
         return redirect()->intended('top');
     }
 
+    //ログアウト機能のためのメソッド
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('login');
+    }
 }

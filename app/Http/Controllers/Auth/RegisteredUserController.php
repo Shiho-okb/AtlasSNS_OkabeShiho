@@ -18,8 +18,11 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
+
+    //映し出すためのメソッド(新規登録フォームを表示)
     public function create(): View
     {
+        //auth/register.blade.phpという"ビュー"をブラウザに表示させる
         return view('auth.register');
     }
 
@@ -28,6 +31,8 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+    //新規登録機能のためのメソッド(新規登録データを受け取る処理)
     public function store(Request $request): RedirectResponse
     {
         User::create([
@@ -36,11 +41,21 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        //$username をセッションに保存
+        //$usernameが未定義だとadded()メソッド内で使用できないため、セッションを使ってデータを渡す
+        $request->session()->put('username', $request->username);
+
+        //ユーザーが新規登録フォームを送信すると、処理完了後に /added というURLにリダイレクトされる
         return redirect('added');
     }
 
+    //新規追加分を映し出すためのメソッド
     public function added(): View
     {
-        return view('auth.added');
+        //セッションから $username を取得
+        $username = session('username');
+
+        //auth/added.blade.phpという"ビュー"をブラウザに表示させる
+        return view('auth.added',['username' => $username]);
     }
 }
