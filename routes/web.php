@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
 
   Route::get('search', [UsersController::class, 'index']);
 
-  Route::get('follow-list', [PostsController::class, 'index']);
-  Route::get('follower-list', [PostsController::class, 'index']);
+  Route::get('follow-list', [PostsController::class, 'follow_list']);
+  Route::get('follower-list', [PostsController::class, 'follower_list']);
 
   Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout'); //ログアウトのための(名前付き)ルーティング
 

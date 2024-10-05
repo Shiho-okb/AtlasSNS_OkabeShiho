@@ -1,6 +1,6 @@
 <x-login-layout>
 
 
-  <h2>機能を実装していきましょう。</h2>
+  <h2>トップ画面だよ</h2>
 
 </x-login-layout>

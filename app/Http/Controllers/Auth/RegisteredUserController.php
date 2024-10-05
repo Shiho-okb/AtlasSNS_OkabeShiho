@@ -45,7 +45,8 @@ class RegisteredUserController extends Controller
         //$usernameが未定義だとadded()メソッド内で使用できないため、セッションを使ってデータを渡す
         $request->session()->put('username', $request->username);
 
-        //ユーザーが新規登録フォームを送信すると、処理完了後に /added というURLにリダイレクトされる
+        //ユーザーが新規登録フォームを送信すると処理完了後に↓
+        //「/added」という"URL"をたたきに行く
         return redirect('added');
     }
 
@@ -55,7 +56,7 @@ class RegisteredUserController extends Controller
         //セッションから $username を取得
         $username = session('username');
 
-        //auth/added.blade.phpという"ビュー"をブラウザに表示させる
+        //(auth/added.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
         return view('auth.added',['username' => $username]);
     }
 }
