@@ -52,9 +52,12 @@
   </div>
   <footer>
   </footer>
+  <!-- jQueryの読み込み -->
+  <script src="{{ asset('js/jquery.min.js') }}"></script> <!-- jQueryのローカルファイル、もしくはCDNでも可 -->
+  <!-- app.jsの読み込み -->
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="JavaScriptファイルのURL"></script>
-  <script src="JavaScriptファイルのURL"></script>
+  <!-- モーダル機能のためのJavaScriptファイルの読み込み -->
+  <script src="{{ asset('js/script.js') }}"></script> <!-- public/js配下にあるscript.jsファイルを読み込む -->
 </body>
 
 </html>

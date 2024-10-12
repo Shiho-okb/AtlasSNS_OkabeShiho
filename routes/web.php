@@ -33,6 +33,17 @@ Route::middleware('auth')->group(function () {
   Route::get('follow-list', [PostsController::class, 'follow_list']);
   Route::get('follower-list', [PostsController::class, 'follower_list']);
 
-  Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout'); //ログアウトのための(名前付き)ルーティング
+  //ログアウトのための(名前付き)ルーティング
+  Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+  //投稿登録のための(名前付き)ルーティング
+  Route::post('/post/create', [PostsController::class, 'postCreate']);
+
+  //投稿削除のためのルーティング
+  //post送信と一緒に送られるパラメータを受け取るには、web.php内に変数名を用意する必要がある。書き方は通常の「$変数名」ではなく「{変数名}」の形。
+  Route::post('/post/{id}/delete', [PostsController::class, 'delete']);
+
+  //投稿編集のためのルーティング
+  //post送信と一緒に送られるパラメータを受け取るには、web.php内に変数名を用意する必要がある。書き方は通常の「$変数名」ではなく「{変数名}」の形。
+  Route::post('/post/{id}/edit', [PostsController::class, 'edit']);
 });

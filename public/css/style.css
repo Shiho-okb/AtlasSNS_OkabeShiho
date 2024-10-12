@@ -20,3 +20,74 @@ header{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
 }
+
+/* 投稿フォーム */
+.post-form-container {
+    display: flex;
+    flex-direction: column; /* 縦に配置 */
+    align-items: flex-start; /* 左揃え */
+}
+
+.user-icon {
+    margin-bottom: 10px; /* アイコンとフォームの間に余白をつける */
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 10px; /* テキストエリアと投稿ボタンの間に余白をつける */
+}
+
+.submit-button {
+    display: flex;
+    justify-content: flex-end; /* ボタンを右揃えにする */
+    width: 100%; /* 親要素に合わせる */
+}
+
+.submit-button button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.submit-button img {
+    cursor: pointer; /* ボタンをクリックできるようにする */
+}
+
+/* 削除ボタン ホバー時の画像切り替え */
+/* style.cssから見て、imageファイルは一つ上の階層なので「../」を記述 */
+.delete-button:hover img {
+    content: url("../images/trash-h.png");
+    width: 50px;
+    height: 50px;
+}
+
+/* 投稿編集 モーダル画面 */
+.content {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal {
+    display: none; /* モーダルの中身である.modalはデフォルトでdisplay: noneに設定しておく（ボタンが押されたらモーダルを表示する為） */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
