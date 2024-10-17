@@ -36,8 +36,8 @@ class PostsController extends Controller
     }
 
     // 投稿削除のためのメソッド
-    public function delete($id)
-    {
+    public function delete($id){
+
         // postsテーブルの中で、idが指定された$idのレコードを削除する
         Post::where('id', $id)->delete();
         // 削除完了後にトップページにリダイレクト
@@ -47,8 +47,8 @@ class PostsController extends Controller
     // 投稿編集のためのメソッド
     // Request は、HTTPリクエストのデータを扱うLaravelのクラス。この $requestパラメータは、フォームやURLから送信されたデータ（POSTデータやGETデータなど）を取得する
     // $id は、ルート（URL）から渡されるパラメータ。このIDを使って、データベースから編集対象のレコードを特定する
-    public function edit(Request $request, $id)
-    {
+    public function edit(Request $request, $id){
+
         // 投稿を取得
         $post = Post::where('id', $id)->first();
         // 投稿フォームから編集して送信された内容を取得
@@ -61,14 +61,12 @@ class PostsController extends Controller
         return redirect('top');
     }
 
-    public function follow_list()
-    {
+    public function follow_list(){
         //(posts/follow.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
         return view('posts.follow');
     }
 
-    public function follower_list()
-    {
+    public function follower_list(){
         //(posts/follower.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
         return view('posts.follower');
     }

@@ -1,7 +1,5 @@
 <x-login-layout>
 
-  <h2>トップ画面だよ</h2>
-
   <!-- ユーザーアイコンの表示 -->
   @if (Auth::check()) <!-- ログインしているかチェック -->
   <div class="user-icon">
@@ -25,47 +23,34 @@
 
   <!-- foreachを使って繰り返し処理を行い画面に表示 -->
   @foreach ($posts as $post)
+  <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
   <table class="table table-hover">
     <tr>
       <!-- Laravelの制御構文 -->
       <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
-      <td><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></td>
-      <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
-      <td>{{ $post->user->username }}</td>
-      <td>{{ $post->post }}</td>
-      <td>{{ $post->created_at }}</td>
-
-
-      <!-- レイアウトを綺麗に当てる為に下記の形をとってください -->
-      <!-- それぞれのtdタグにwidthで%指定 -->
-      <!-- <td>
+      <td>
         <div><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
       </td>
+      <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
       <td>
         <p>{{ $post->user->username }}</p>
         <p>{{ $post->post }}</p>
       </td>
-      <td>{{ $post->post }}</td>
+
+      <!-- if文でボタンの出しわけをこのファイルでします -->
+      <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
       <td class="submit-button">
         <p>{{ $post->created_at }}</p>
+
+        <!-- 投稿編集ボタン -->
+        <!-- このボタンを押下するとモーダル画面が開く（データの送信などはしない） -->
+        <!-- 編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータをモーダルの中身に送る -->
+        <!-- 例：「こんにちは」と投稿された投稿に設置されている編集ボタンではpost=”こんにちは”となる -->
         <button type="button" class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">
           <img src="{{ asset('images/edit.png') }}" alt="投稿編集" width="50" height="50">
         </button>
-        <form action="/post/{{$post->id}}/delete" method="get">
-          <button class="delete-button" type="submit" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-            <img src="{{ asset('images/trash.png') }}" alt="投稿削除" width="50" height="50">
-          </button>
-        </form>
-      </td> -->
 
-      <!-- レイアウトを綺麗に当てる為に上記記の形をとってください 湧川-->
-
-
-
-      <!-- if文でボタンの出しわけをこのファイルでします -->
-
-      <!-- 投稿削除ボタン -->
-      <td class="submit-button">
+        <!-- 投稿削除ボタン -->
         <!-- 移動先のURL指定にpostテーブル内の各リストのID番号を設置 -->
         <form action="/post/{{$post->id}}/delete" method="post">
           @csrf <!-- CSRFトークンを追加 -->
@@ -75,16 +60,6 @@
             <img src="{{ asset('images/trash.png') }}" alt="投稿削除" width="50" height="50">
           </button>
         </form>
-      </td>
-
-      <!-- 投稿編集ボタン -->
-      <td class="submit-button">
-        <!-- このボタンを押下するとモーダル画面が開く（データの送信などはしない） -->
-        <!-- 編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータをモーダルの中身に送る -->
-        <!-- 例：「こんにちは」と投稿された投稿に設置されている編集ボタンではpost=”こんにちは”となる -->
-        <button type="button" class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">
-          <img src="{{ asset('images/edit.png') }}" alt="投稿編集" width="50" height="50">
-        </button>
       </td>
 
       <!-- if文でボタンの出しわけをこのファイルでします -->

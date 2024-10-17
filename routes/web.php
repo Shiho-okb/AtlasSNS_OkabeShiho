@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\FollowsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
   //ログアウトのための(名前付き)ルーティング
   Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-  //投稿登録のための(名前付き)ルーティング
+  //投稿登録のためのルーティング
   Route::post('/post/create', [PostsController::class, 'postCreate']);
 
   //投稿削除のためのルーティング
@@ -46,4 +47,11 @@ Route::middleware('auth')->group(function () {
   //投稿編集のためのルーティング
   //post送信と一緒に送られるパラメータを受け取るには、web.php内に変数名を用意する必要がある。書き方は通常の「$変数名」ではなく「{変数名}」の形。
   Route::post('/post/{id}/edit', [PostsController::class, 'edit']);
+
+  //ユーザー検索のためのルーティング
+  Route::get('/search', [UsersController::class, 'search']);
+
+  //フォロー・フォロー解除のためのルーティング
+  Route::post('/toggleFollow/{user_id}', [FollowsController::class, 'toggleFollow']);
+
 });
