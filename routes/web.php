@@ -29,8 +29,6 @@ Route::middleware('auth')->group(function () {
 
   Route::get('profile', [ProfileController::class, 'profile']);
 
-  Route::get('search', [UsersController::class, 'index']);
-
   Route::get('follow-list', [PostsController::class, 'follow_list']);
   Route::get('follower-list', [PostsController::class, 'follower_list']);
 
@@ -48,8 +46,11 @@ Route::middleware('auth')->group(function () {
   //post送信と一緒に送られるパラメータを受け取るには、web.php内に変数名を用意する必要がある。書き方は通常の「$変数名」ではなく「{変数名}」の形。
   Route::post('/post/{id}/edit', [PostsController::class, 'edit']);
 
+  // ユーザー一覧のためのルーティング
+  Route::get('/search', [UsersController::class, 'index']);
+
   //ユーザー検索のためのルーティング
-  Route::get('/search', [UsersController::class, 'search']);
+  Route::post('/search', [UsersController::class, 'search']);
 
   //フォロー・フォロー解除のためのルーティング
   Route::post('/toggleFollow/{user_id}', [FollowsController::class, 'toggleFollow']);

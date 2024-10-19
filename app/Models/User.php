@@ -42,9 +42,9 @@ class User extends Authenticatable
     return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
     }
 
-    // ②自分をフォローしているユーザーとのリレーション
+    // ②自分がフォローされているユーザーとのリレーション
     public function followers(){
-    return $this->belongsToMany('App\Models\User', 'follows', 'followed_id', 'following_id');
+    return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
     }
 
     // 以下のメソッドを follow.php ではなく user.php に記述する理由

@@ -1,4 +1,7 @@
 @charset "utf-8";
+/*-------------------------------------------
+  共通パーツ
+-------------------------------------------*/
 html{
 }
 body{
@@ -8,19 +11,23 @@ header{
     background:#186AC9;
 }
 
-/* main content */
 #row{
     display: flex;
     flex-flow: row wrap;
 }
 #container{
     flex: 0 0 80%;
+    padding: 0 80px;
 }
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
 }
 
+
+/*-------------------------------------------
+  トップページ
+-------------------------------------------*/
 /* 投稿フォーム */
 .post-form-container {
     display: flex;
@@ -53,7 +60,7 @@ textarea {
     cursor: pointer; /* ボタンをクリックできるようにする */
 }
 
-/* 削除ボタン ホバー時の画像切り替え */
+/* 削除ボタン（ホバー時の画像切り替え）*/
 /* style.cssから見て、imageファイルは一つ上の階層なので「../」を記述 */
 .delete-button:hover img {
     content: url("../images/trash-h.png");
@@ -61,7 +68,7 @@ textarea {
     height: 50px;
 }
 
-/* 投稿編集 モーダル画面 */
+/* 投稿編集モーダル */
 .content {
     margin: 0 auto;
     padding: 40px;
@@ -90,4 +97,18 @@ textarea {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
+}
+
+
+/*-------------------------------------------
+  検索ページ
+-------------------------------------------*/
+.search-page-head {
+    display: flex;
+    align-items: center;
+}
+
+.search-page-head form,
+.search-page-head p {
+    width: 50%;
 }

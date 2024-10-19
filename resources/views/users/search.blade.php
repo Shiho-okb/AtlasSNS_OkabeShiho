@@ -1,5 +1,21 @@
 <x-login-layout>
 
+  <div class="search-page-head">
+    <form action="/search" method="post">
+      @csrf
+      <input type="text" name="keyword" class="" placeholder="ユーザー名">
+      <button type="submit" class="search-button">
+        <img src="{{ asset('images/search.png') }}" alt="検索" width="50" height="50">
+      </button>
+    </form>
+
+    <!-- 検索ワードが存在する場合に検索ワードを表示 -->
+    <!-- != は「異なる」を意味する比較演算子 -->
+    @if (!empty($keyword))
+    <p>検索ワード: {{ $keyword }}</p>
+    @endif
+  </div>
+
   <div class="user-list">
     <!-- Usersコントローラーから渡された $users の情報をループで展開 -->
     @foreach ($users as $user)
