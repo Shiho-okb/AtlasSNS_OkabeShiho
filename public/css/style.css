@@ -60,6 +60,68 @@ textarea {
     cursor: pointer; /* ボタンをクリックできるようにする */
 }
 
+/* ヘッド */
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.head-logo {
+    margin: 0;
+}
+
+.head-logo img {
+    width: 35%;
+}
+
+#head-info {
+    display: flex;
+}
+
+/* アコーディオンメニュー */
+
+/* 矢印画像を追加 */
+.accordion-button::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+}
+
+/* クリック時に矢印を180度反転 */
+.accordion-button.open::after {
+    transform: translateY(-50%) rotate(180deg); /* 矢印の回転 */
+}
+
+.accordion-menu {
+    position: absolute;
+    top: 10.3%;
+    right: 0px;
+    width: 20%;
+}
+
+.accordion-menu ul {
+    display: none; /* 初期状態では非表示 */
+    list-style: none;
+    padding: 0;
+}
+
+.accordion-menu.active ul {
+    display: block;
+}
+
+.accordion-menu li {
+    text-align: center;
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
 /* 削除ボタン（ホバー時の画像切り替え）*/
 /* style.cssから見て、imageファイルは一つ上の階層なので「../」を記述 */
 .delete-button:hover img {

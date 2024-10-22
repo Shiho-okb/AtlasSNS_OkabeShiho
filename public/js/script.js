@@ -1,3 +1,4 @@
+// モーダル画面
 $(function () {
   // 編集ボタン(class="js-modal-open")が押されたら発火
   $('.js-modal-open').on('click', function () {
@@ -25,5 +26,18 @@ $(function () {
     // モーダルの中身(class="js-modal")を非表示
     $('.js-modal').fadeOut();
     return false;
+  });
+});
+
+
+$(function () {
+  console.log("do");
+
+  $('.accordion-button').click(function () {
+    // アコーディオンメニューをトグル（切り替え）
+    $('nav ul').slideToggle();
+
+    // 矢印の上下反転
+    $('.accordion-button').toggleClass('open');
   });
 });
