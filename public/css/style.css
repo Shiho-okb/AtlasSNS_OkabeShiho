@@ -3,7 +3,9 @@
   共通パーツ
 -------------------------------------------*/
 html{
+    min-height: 100vh;
 }
+
 body{
 }
 /* header */
@@ -15,10 +17,12 @@ header{
     display: flex;
     flex-flow: row wrap;
 }
+
 #container{
     flex: 0 0 80%;
     padding: 0 80px;
 }
+
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
@@ -39,15 +43,43 @@ header{
     margin-bottom: 10px; /* アイコンとフォームの間に余白をつける */
 }
 
+.user-icon img {
+    width: 50px;
+}
+
 textarea {
     width: 100%;
     margin-bottom: 10px; /* テキストエリアと投稿ボタンの間に余白をつける */
 }
 
-.submit-button {
+.send-button {
     display: flex;
     justify-content: flex-end; /* ボタンを右揃えにする */
     width: 100%; /* 親要素に合わせる */
+}
+
+.send-button button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.send-button img {
+    cursor: pointer; /* ボタンをクリックできるようにする */
+}
+
+.post {
+    width: 70%;
+}
+
+.submit-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    /* ボタンを右揃えにする */
+    width: 100%;
+    /* 親要素に合わせる */
 }
 
 .submit-button button {
@@ -57,7 +89,12 @@ textarea {
 }
 
 .submit-button img {
-    cursor: pointer; /* ボタンをクリックできるようにする */
+    cursor: pointer;
+    /* ボタンをクリックできるようにする */
+}
+
+.submit-button form {
+    display: inline-block;
 }
 
 /* ヘッド */

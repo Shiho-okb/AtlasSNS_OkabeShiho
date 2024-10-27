@@ -13,7 +13,7 @@
 
 
     <div class="right">
-      {{ Form::submit('ログイン',['class' => 'button']) }}
+      {{ Form::submit('ログイン',['class' => 'login-btn button']) }}
     </div>
 
     <p><a href="register">新規ユーザーの方はこちら</a></p>
@@ -22,3 +22,10 @@
   {!! Form::close() !!}
 
 </x-logout-layout>
+
+
+<style>
+header {
+  margin-top: 6%;
+}
+</style>
