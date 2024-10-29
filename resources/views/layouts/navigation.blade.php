@@ -2,7 +2,7 @@
           <h1 class="head-logo"><a href="top"><img src="images/atlas.png"></a></h1>
 
           <div id="head-info">
-            <p>{{ Auth::user()->username }}さん</p>
+            <p>{{ Auth::user()->username }}<span>さん</span></p>
             <!-- 矢印アイコン -->
             <div class="accordion-button"></div>
             <nav class="accordion-menu">
@@ -20,5 +20,11 @@
                 </li>
               </ul>
             </nav>
+            <!-- ユーザーアイコンの表示 -->
+            @if (Auth::check()) <!-- ログインしているかチェック -->
+            <div class="user-icon acd-user-icon">
+              <img src="{{ asset('images/' . Auth::user()->icon_image) }}" alt="ユーザーアイコン" width="50" height="50">
+            </div>
+            @endif
           </div>
         </div>

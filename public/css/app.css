@@ -3899,7 +3899,7 @@ textarea.input-lg {
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
   font-size: 14px;
   line-height: 1.6;
   border-radius: 4px;

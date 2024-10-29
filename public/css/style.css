@@ -20,12 +20,15 @@ header{
 
 #container{
     flex: 0 0 80%;
-    padding: 0 80px;
 }
 
-#side-bar{
-    flex: 0 0 19%;
-    border-left: 1px solid #727272;
+.table-wrap {
+    padding: 10px 80px;
+    border-bottom: 1px solid #727272;
+}
+
+td {
+    border-top: none !important;
 }
 
 
@@ -33,14 +36,15 @@ header{
   トップページ
 -------------------------------------------*/
 /* 投稿フォーム */
-.post-form-container {
+.post-form {
     display: flex;
-    flex-direction: column; /* 縦に配置 */
-    align-items: flex-start; /* 左揃え */
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 0px;
 }
 
 .user-icon {
-    margin-bottom: 10px; /* アイコンとフォームの間に余白をつける */
+    margin-bottom: 10px;
 }
 
 .user-icon img {
@@ -48,8 +52,13 @@ header{
 }
 
 textarea {
-    width: 100%;
-    margin-bottom: 10px; /* テキストエリアと投稿ボタンの間に余白をつける */
+    padding: 10px 10px;
+    background-color: #f6f8fa;
+    width: 90%;
+    margin-bottom: 10px;
+    border: none;
+    resize: none;
+    outline: none;
 }
 
 .send-button {
@@ -97,6 +106,12 @@ textarea {
     display: inline-block;
 }
 
+.post-send-wrap {
+    padding: 0 60px;
+    border-bottom: 8px solid #e0e0e0;
+}
+
+
 /* ヘッド */
 #head {
     display: flex;
@@ -111,14 +126,31 @@ textarea {
 
 .head-logo img {
     width: 35%;
+    margin-left: 15px;
 }
 
 #head-info {
     display: flex;
+    align-items: center;
 }
 
-/* アコーディオンメニュー */
+#head-info span {
+    padding: 10px;
+}
 
+#head p {
+    color: white;
+    margin-right: 30px;
+    font-weight: 900;
+}
+
+.acd-user-icon {
+    margin-right: 25px;
+    margin-bottom: 0px;
+}
+
+
+/* アコーディオンメニュー */
 /* 矢印画像を追加 */
 .accordion-button::after {
     content: "";
@@ -129,16 +161,17 @@ textarea {
     background-size: contain;
     background-repeat: no-repeat;
     transition: transform 0.3s ease;
+    margin-right: 15px;
 }
 
 /* クリック時に矢印を180度反転 */
 .accordion-button.open::after {
-    transform: translateY(-50%) rotate(180deg); /* 矢印の回転 */
+    transform: translateY(-20%) rotate(180deg); /* 矢印の回転 */
 }
 
 .accordion-menu {
     position: absolute;
-    top: 10.3%;
+    top: 11.6%;
     right: 0px;
     width: 20%;
 }
@@ -147,6 +180,7 @@ textarea {
     display: none; /* 初期状態では非表示 */
     list-style: none;
     padding: 0;
+    border: solid 2px black;
 }
 
 .accordion-menu.active ul {
@@ -155,9 +189,90 @@ textarea {
 
 .accordion-menu li {
     text-align: center;
-    padding: 20px;
+    padding: 35px;
     background-color: #FFFFFF;
 }
+
+.accordion-menu li:nth-child(2) {
+    background-color: #00297e;
+}
+
+.accordion-menu li a {
+    color: #848484;
+    font-size: 25px;
+}
+
+.accordion-menu li:nth-child(2) a {
+    color: white;
+    font-size: 25px;
+}
+
+
+/* 共通サイドバー */
+#side-bar {
+    flex: 0 0 20%;
+    border-left: 1px solid #727272;
+    height: 100vh;
+}
+
+#confirm {
+    padding: 10px 20px;
+    border-bottom: 1px solid #888888;
+}
+
+.user-name {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.number {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.follow-nb p {
+    margin-right: 55px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    letter-spacing: -1.5px;
+}
+
+.follower-nb p {
+    margin-right: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    letter-spacing: -1.5px;
+}
+
+.btn {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.search-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#side-bar a {
+    padding: 10px 15px;
+    background-color: #0167c7;
+    border-radius: 10px;
+    color: white;
+    letter-spacing: -1.5px;
+    text-align: center;
+    display: inline-block;
+    width: 130px;
+}
+
+.search-btn a {
+    padding: 10px 15px !important;
+    width: 155px !important;
+    font-size: 18px !important;
+}
+
 
 /* 削除ボタン（ホバー時の画像切り替え）*/
 /* style.cssから見て、imageファイルは一つ上の階層なので「../」を記述 */
