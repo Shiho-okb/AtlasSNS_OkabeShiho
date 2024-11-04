@@ -5,12 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\User;
 
 class PostsController extends Controller
 {
-    // 投稿内容表示のためのメソッド
+    // トップページに投稿内容表示のためのメソッド
     public function index(){
-        $posts = Post::get(); //Postモデル（postsテーブル）からレコード情報を取得
+
+        // ログインしているユーザーIDを取得
+        $user_id = Auth::user()->id;
+
+        // ログインユーザーがフォローしているユーザーのIDを取得
+        $following_ids = Auth::user()->followings()->pluck('followed_id')->toArray();
+
+        // 自分とフォローしているユーザーの投稿のみ取得
+        // whereIn('user_id', ...) で、上記で取得したIDのいずれかに一致する投稿のみを取得
+        $posts = Post::with('user')
+            ->whereIn('user_id', array_merge([$user_id], $following_ids))
+            ->get();
+
         //(posts/index.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
         //取得した変数を(posts/index.blade.php)に渡しながら移動する
         return view('posts.index',['posts' => $posts]);
@@ -70,4 +83,25 @@ class PostsController extends Controller
         //(posts/follower.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
         return view('posts.follower');
     }
+
+    // フォローページに投稿内容表示のためのメソッド
+    public function show(){
+
+        // フォローしているユーザーのidを取得
+          // followings()メソッドは多対多のリレーションが定義されている部分
+        $following_id = Auth::user()->followings()->pluck('followed_id');
+
+        // フォローしているユーザーのidを元に、"フォローしているユーザーの投稿内容" を取得
+          // with('user') は、リレーションを使って投稿に紐づくユーザー情報を一緒に取得するメソッド
+          // Postモデルには Userモデルへのリレーション（user() メソッド）が定義されている
+          // whereIn() で、Postsテーブルの'user_id'の中で$following_id(フォローしているユーザー)を取得
+        $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+
+        // フォローしているユーザーのidを元に、"フォローしているユーザーの全情報" を取得
+          // whereIn() で、usersテーブルの'id'の中で$following_id(フォローしているユーザー)を取得
+        $users = User::whereIn('id', $following_id)->get();
+
+        return view('posts.follow', compact('posts', 'users'));
+    }
+
 }

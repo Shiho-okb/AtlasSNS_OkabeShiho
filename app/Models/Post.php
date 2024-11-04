@@ -17,13 +17,11 @@ class Post extends Model
 
     //リレーション定義を追加
     //「１対多」の「1」側 → メソッド名は「単数形」でbelongsToを使う
-    public function icon_image()
-    {
+    public function icon_image(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 }

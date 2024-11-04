@@ -26,7 +26,7 @@
 
 <body>
     <header>
-        <h1><img src="images/atlas.png"></h1>
+        <h1><img src="{{ asset('images/atlas.png') }}"></h1>
         <p class="sub-title">Social Network Service</p>
     </header>
     <div id="container">

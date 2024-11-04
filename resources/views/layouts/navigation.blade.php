@@ -1,5 +1,5 @@
         <div id="head">
-          <h1 class="head-logo"><a href="top"><img src="images/atlas.png"></a></h1>
+          <h1 class="head-logo"><a href="{{ asset('top') }}"><img src="{{ asset('images/atlas.png') }}"></a></h1>
 
           <div id="head-info">
             <p>{{ Auth::user()->username }}<span>さん</span></p>
