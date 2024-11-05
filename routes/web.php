@@ -56,8 +56,11 @@ Route::middleware('auth')->group(function () {
   Route::post('/toggleFollow/{user_id}', [FollowsController::class, 'toggleFollow']);
 
   //フォローリスト表示のためのルーティング
-  Route::get('follow-list', [PostsController::class, 'show']);
+  Route::get('follow-list', [PostsController::class, 'follow']);
 
   //相手のプロフィール表示のためのルーティング
   Route::get('/another-profile/{user_id}', [ProfileController::class, 'anotherProfile']);
+
+  //フォロワーリスト表示のためのルーティング
+  Route::get('follower-list', [PostsController::class, 'follower']);
 });
