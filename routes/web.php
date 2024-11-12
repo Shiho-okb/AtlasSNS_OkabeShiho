@@ -27,11 +27,6 @@ Route::middleware('auth')->group(function () {
 
   Route::get('top', [PostsController::class, 'index']);
 
-  Route::get('profile', [ProfileController::class, 'profile']);
-
-  Route::get('follow-list', [PostsController::class, 'follow_list']);
-  Route::get('follower-list', [PostsController::class, 'follower_list']);
-
   //ログアウトのための(名前付き)ルーティング
   Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
@@ -46,7 +41,7 @@ Route::middleware('auth')->group(function () {
   //post送信と一緒に送られるパラメータを受け取るには、web.php内に変数名を用意する必要がある。書き方は通常の「$変数名」ではなく「{変数名}」の形。
   Route::post('/post/{id}/edit', [PostsController::class, 'edit']);
 
-  // ユーザー一覧のためのルーティング
+  //ユーザー一覧のためのルーティング
   Route::get('/search', [UsersController::class, 'index']);
 
   //ユーザー検索のためのルーティング
@@ -63,4 +58,10 @@ Route::middleware('auth')->group(function () {
 
   //フォロワーリスト表示のためのルーティング
   Route::get('follower-list', [PostsController::class, 'follower']);
+
+  //プロフィール表示のためのルーティング
+  Route::get('profile', [ProfileController::class, 'profile']);
+
+  //プロフィール編集のためのルーティング
+  Route::post('profile', [ProfileController::class, 'profileEdit']);
 });

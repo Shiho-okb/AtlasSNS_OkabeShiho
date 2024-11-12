@@ -1,7 +1,5 @@
 <x-login-layout>
 
-  <h1>相手のプロフィール！！</h1>
-
   @foreach($posts as $post)
   <div class="table-wrap">
     <table class="table table-hover">
@@ -25,4 +23,3 @@
   @endforeach
 
 </x-login-layout>
-

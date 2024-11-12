@@ -7,8 +7,8 @@
             <div class="accordion-button"></div>
             <nav class="accordion-menu">
               <ul>
-                <li><a href="top">HOME</a></li>
-                <li><a href="profile">プロフィール編集</a></li>
+                <li><a href="{{ asset('top') }}">HOME</a></li>
+                <li><a href="{{ asset('profile') }}">プロフィール編集</a></li>
                 <!-- aタグは自動的にGET送信になるため、POST送信に変更 -->
                 <li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

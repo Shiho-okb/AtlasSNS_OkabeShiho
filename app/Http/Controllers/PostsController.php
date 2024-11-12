@@ -61,8 +61,8 @@ class PostsController extends Controller
 
 
   // 投稿編集のためのメソッド
-  // Request は、HTTPリクエストのデータを扱うLaravelのクラス。この $requestパラメータは、フォームやURLから送信されたデータ（POSTデータやGETデータなど）を取得する
-  // $id は、ルート（URL）から渡されるパラメータ。このIDを使って、データベースから編集対象のレコードを特定する
+    // Request は、HTTPリクエストのデータを扱うLaravelのクラス。この $requestパラメータは、フォームやURLから送信されたデータ（POSTデータやGETデータなど）を取得する
+    // $id は、ルート（URL）から渡されるパラメータ。このIDを使って、データベースから編集対象のレコードを特定する
   public function edit(Request $request, $id){
 
     // 投稿を取得
@@ -75,16 +75,6 @@ class PostsController extends Controller
     ]);
     // 編集完了後にトップページにリダイレクト
     return redirect('top');
-  }
-
-  public function follow_list(){
-    //(posts/follow.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
-    return view('posts.follow');
-  }
-
-  public function follower_list(){
-    //(posts/follower.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
-    return view('posts.follower');
   }
 
 

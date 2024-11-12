@@ -39,7 +39,6 @@ class UsersController extends Controller
     }
 
     // 検索ページの(users/search.blade.php)というビューにユーザー情報と検索ワードを渡す
-
     return view('users.search', [
       'users' => $users,
       'keyword' => $keyword,

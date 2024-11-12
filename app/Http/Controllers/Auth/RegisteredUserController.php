@@ -35,6 +35,29 @@ class RegisteredUserController extends Controller
     //新規登録機能のためのメソッド(新規登録データを受け取る処理)
     public function store(Request $request): RedirectResponse
     {
+
+        // バリデーションを定義
+        $request->validate([
+            'username' => 'required|string|min:2|max:12',
+            'email' => 'required|email|min:5|max:40|unique:users,email',
+            'password' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z0-9]+$/',  // 英数字のみ
+                'min:8',
+                'max:20',
+                'confirmed'  // password_confirmationと一致しているか
+            ],
+            'password_confirmation' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z0-9]+$/',  // 英数字のみ
+                'min:8',
+                'max:20'
+            ]
+        ]);
+
+        // ユーザーの新規作成
         User::create([
             'username' => $request->username,
             'email' => $request->email,

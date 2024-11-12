@@ -23,54 +23,58 @@
     </form>
   </div>
 
-    <!-- foreachを使って繰り返し処理を行い画面に表示 -->
-    @foreach ($posts as $post)
-    <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
-    <div class="table-wrap">
-      <table class="table table-hover">
-        <tr>
-          <!-- Laravelの制御構文 -->
-          <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
-          <td>
-            <div class="user-icon"><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
-          </td>
-          <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
-          <td class="post">
-            <p>{{ $post->user->username }}</p>
-            <p>{{ $post->post }}</p>
-          </td>
+  <!-- foreachを使って繰り返し処理を行い画面に表示 -->
+  @foreach ($posts as $post)
+  <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
+  <div class="table-wrap">
+    <table class="table table-hover">
+      <tr>
+        <!-- Laravelの制御構文 -->
+        <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
+        <td>
+          <div class="user-icon"><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
+        </td>
+        <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
+        <td class="post">
+          <p>{{ $post->user->username }}</p>
+          <p>{{ $post->post }}</p>
+        </td>
 
-          <!-- if文でボタンの出しわけをこのファイルでします -->
-          <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
-          <td class="submit-button">
-            <p>{{ $post->created_at }}</p>
+        <!-- if文でボタンの出しわけをこのファイルでします -->
+        <!-- レイアウト：それぞれのtdタグにwidthで%指定 -->
+        <td class="submit-button">
+          <p>{{ $post->created_at }}</p>
 
-            <!-- 投稿編集ボタン -->
-            <!-- このボタンを押下するとモーダル画面が開く（データの送信などはしない） -->
-            <!-- 編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータをモーダルの中身に送る -->
-            <!-- 例：「こんにちは」と投稿された投稿に設置されている編集ボタンではpost=”こんにちは”となる -->
-            <div class="button-container">
-              <button type="button" class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">
-                <img src="{{ asset('images/edit.png') }}" alt="投稿編集" width="50" height="50">
+          <!-- 自分の投稿かどうかをチェック -->
+          <!-- user_idがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
+          @if (Auth::id() === $post->user_id)
+          <!-- 投稿編集ボタン -->
+          <!-- このボタンを押下するとモーダル画面が開く（データの送信などはしない） -->
+          <!-- 編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータをモーダルの中身に送る -->
+          <!-- 例：「こんにちは」と投稿された投稿に設置されている編集ボタンではpost=”こんにちは”となる -->
+          <div class="button-container">
+            <button type="button" class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">
+              <img src="{{ asset('images/edit.png') }}" alt="投稿編集" width="50" height="50">
+            </button>
+
+            <!-- 投稿削除ボタン -->
+            <!-- 移動先のURL指定にpostテーブル内の各リストのID番号を設置 -->
+            <form action="/post/{{$post->id}}/delete" method="post">
+              @csrf <!-- CSRFトークンを追加 -->
+              <!-- type="submit" =クリックするとフォームが送信される -->
+              <!-- onclick属性 ＝削除を行っていいかを確認するモーダル画面が表示されるように設定-->
+              <button class="delete-button" type="submit" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+                <img src="{{ asset('images/trash.png') }}" alt="投稿削除" width="50" height="50">
               </button>
-
-              <!-- 投稿削除ボタン -->
-              <!-- 移動先のURL指定にpostテーブル内の各リストのID番号を設置 -->
-              <form action="/post/{{$post->id}}/delete" method="post">
-                @csrf <!-- CSRFトークンを追加 -->
-                <!-- type="submit" =クリックするとフォームが送信される -->
-                <!-- onclick属性 ＝削除を行っていいかを確認するモーダル画面が表示されるように設定-->
-                <button class="delete-button" type="submit" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-                  <img src="{{ asset('images/trash.png') }}" alt="投稿削除" width="50" height="50">
-                </button>
-              </form>
-            </div>
-          </td>
-          <!-- if文でボタンの出しわけをこのファイルでします -->
-        </tr>
-      </table>
-    </div>
-    @endforeach
+            </form>
+          </div>
+          @endif
+        </td>
+        <!-- if文でボタンの出しわけをこのファイルでします -->
+      </tr>
+    </table>
+  </div>
+  @endforeach
 
 
   <!-- モーダルの中身をここに記載 -->
