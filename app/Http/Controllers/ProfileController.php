@@ -20,6 +20,9 @@ class ProfileController extends Controller
   // 相手のプロフィールページに相手の投稿内容表示のためのメソッド
   public function anotherProfile($user_id){
 
+    // 特定のユーザーの情報を取得
+    $user = User::findOrFail($user_id);
+
     // 特定のユーザーの投稿内容を取得
       // with('user') は、リレーションを使って投稿に紐づくユーザー情報を一緒に取得するメソッド
       // Post モデルには User モデルへのリレーション（user() メソッド）が定義されている
@@ -28,7 +31,8 @@ class ProfileController extends Controller
       ->orderBy('created_at', 'asc') //新しい順に並び替え
       ->get();
 
-    return view('profiles.another-profile', compact('posts'));
+    // 相手のプロフィールページの(profiles/another-profile.blade.php)というビューにユーザー情報を渡す
+    return view('profiles.another-profile', ['user' => $user, 'posts' => $posts]);
   }
 
 
@@ -37,6 +41,7 @@ class ProfileController extends Controller
 
     // 現在のログインユーザー情報を取得
     $user = Auth::user();
+
     // ビューにユーザー情報を渡す
     return view('profiles.profile', compact('user'));
   }

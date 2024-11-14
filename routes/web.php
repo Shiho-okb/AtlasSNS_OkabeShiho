@@ -64,4 +64,5 @@ Route::middleware('auth')->group(function () {
 
   //プロフィール編集のためのルーティング
   Route::post('profile', [ProfileController::class, 'profileEdit']);
+
 });
