@@ -1,19 +1,21 @@
 <x-login-layout>
 
-  <div class="search-page-head">
-    <form action="/search" method="post">
-      @csrf
-      <input type="text" name="keyword" class="" placeholder="ユーザー名">
-      <button type="submit" class="search-button">
-        <img src="{{ asset('images/search.png') }}" alt="検索" width="50" height="50">
-      </button>
-    </form>
+  <div class="post-send-wrap">
+    <div class="search-page-head">
+      <form action="/search" method="post">
+        @csrf
+        <input type="text" name="keyword" class="" placeholder="ユーザー名">
+        <button type="submit" class="search-button">
+          <img src="{{ asset('images/search.png') }}" alt="検索" width="50" height="50">
+        </button>
+      </form>
 
-    <!-- 検索ワードが存在する場合に検索ワードを表示 -->
-    <!-- != は「異なる」を意味する比較演算子 -->
-    @if (!empty($keyword))
-    <p>検索ワード: {{ $keyword }}</p>
-    @endif
+      <!-- 検索ワードが存在する場合に検索ワードを表示 -->
+      <!-- != は「異なる」を意味する比較演算子 -->
+      @if (!empty($keyword))
+      <p>検索ワード: {{ $keyword }}</p>
+      @endif
+    </div>
   </div>
 
   <div class="user-list">
@@ -38,10 +40,10 @@
             <!-- 現在ログインしているユーザーが特定のユーザー（$user->id）をフォローしているか確認-->
             @if (auth()->user()->isFollowing($user->id))
             <!-- フォロー解除ボタン -->
-            <button type="submit" class="btn btn-danger">フォロー解除</button>
+            <button type="submit" class="btn btn-red">フォロー解除</button>
             @else
             <!-- フォローボタン -->
-            <button type="submit" class="btn btn-info">フォローする</button>
+            <button type="submit" class="btn btn-blue">フォローする</button>
             @endif
           </form>
         </td>
