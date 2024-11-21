@@ -304,6 +304,7 @@ textarea::placeholder {
     text-align: center;
     display: inline-block;
     width: 130px;
+    text-decoration: none;
 }
 
 .search-btn a {
