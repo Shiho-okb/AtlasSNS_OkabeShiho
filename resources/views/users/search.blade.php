@@ -25,7 +25,7 @@
       <tr>
         <!-- ユーザーアイコン -->
         <td class="user-item">
-          <img src="{{ asset('images/' . $user->icon_image) }}" alt="{{ $user->username }}のアイコン" width="50" height="50">
+          <img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="{{ $user->username }}のアイコン" width="50" height="50">
         </td>
         <!-- ユーザー名 -->
         <td>

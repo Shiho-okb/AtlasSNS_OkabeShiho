@@ -6,7 +6,7 @@
       <div class="user-icon" style="width: 650px;">
         @foreach($users as $user)
         <a href="{{ url('/another-profile/' . $user->id) }}">
-          <img style="margin-left: 10px; margin-bottom: 10px" src="{{ asset('images/' . $user->icon_image) }}" alt="ユーザーアイコン">
+          <img style="margin-left: 10px; margin-bottom: 10px" src="{{ asset('storage/images/' . $user->icon_image) }}" alt="ユーザーアイコン">
         </a>
         @endforeach
       </div>
@@ -23,7 +23,7 @@
         <td>
           <div class="user-icon">
             <a href="{{ url('/another-profile/' . $post->user->id) }}">
-              <img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン">
+              <img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="ユーザーアイコン">
             </a>
           </div>
         </td>
