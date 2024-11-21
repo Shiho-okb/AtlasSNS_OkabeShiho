@@ -96,9 +96,8 @@ class ProfileController extends Controller
     // アイコン画像のアップロード処理
     if ($request->hasFile('icon_image')) {
       $image = $request->file('icon_image');
-      $imageName = time() . '.' . $image->getClientOriginalExtension();
-      $image->move(public_path('images'), $imageName);
-      $user->icon_image = $imageName;
+      $imagePath = $image->store('images', 'public'); // storage/app/public/imagesに保存
+      $user->icon_image = basename($imagePath); // ファイル名のみ保存
     }
 
     $user->save();

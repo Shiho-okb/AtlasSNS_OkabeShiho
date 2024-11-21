@@ -7,7 +7,7 @@
       <!-- ユーザーアイコンの表示 -->
       @if (Auth::check()) <!-- ログインしているかチェック -->
       <div class="user-icon">
-        <img src="{{ asset('images/' . Auth::user()->icon_image) }}" alt="ユーザーアイコン" width="50" height="50">
+        <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="ユーザーアイコン" width="50" height="50">
       </div>
       @endif
 

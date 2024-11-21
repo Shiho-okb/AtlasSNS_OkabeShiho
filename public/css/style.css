@@ -64,6 +64,7 @@ td {
 
 .user-icon img {
     width: 50px;
+    border-radius: 25px;
 }
 
 textarea {

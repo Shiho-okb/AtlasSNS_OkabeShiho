@@ -8,7 +8,7 @@
       <!-- ユーザーアイコンの表示 -->
       @if (Auth::check()) <!-- ログインしているかチェック -->
       <div class="user-icon" style="height: 70px;margin-right: 15px;">
-        <img src="{{ asset('images/' . Auth::user()->icon_image) }}" alt="ユーザーアイコン" width="50" height="50">
+        <img src="{{ asset('storage/images/' . Auth::user()->icon_image) }}" alt="ユーザーアイコン" width="50" height="50">
       </div>
       @endif
 
@@ -43,7 +43,7 @@
         <!-- Laravelの制御構文 -->
         <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
         <td>
-          <div class="user-icon"><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
+          <div class="user-icon"><img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
         </td>
         <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
         <td class="post">
