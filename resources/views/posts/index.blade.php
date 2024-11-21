@@ -12,6 +12,17 @@
       </div>
       @endif
 
+      {{-- エラーメッセージの表示 --}}
+      @if($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
+
       <textarea name="post" id="request-about" placeholder="投稿内容を入力してください。"></textarea>
 
       <!-- 投稿ボタン -->
@@ -84,6 +95,16 @@
       <!-- formタグのaction属性はJSで自動的に設定する -->
       <form id="modal-form" method="post">
         <div>
+          {{-- エラーメッセージの表示 --}}
+          @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
           <!-- 編集用テキストエリア -->
           <textarea name="post" class="modal_post"></textarea>
           <!-- 隠しフィールドに投稿IDをセット -->

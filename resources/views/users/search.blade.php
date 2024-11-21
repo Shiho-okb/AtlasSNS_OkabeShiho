@@ -8,13 +8,13 @@
         <button type="submit" class="search-button">
           <img src="{{ asset('images/search.png') }}" alt="検索" width="50" height="50">
         </button>
-      </form>
 
-      <!-- 検索ワードが存在する場合に検索ワードを表示 -->
-      <!-- != は「異なる」を意味する比較演算子 -->
-      @if (!empty($keyword))
-      <p>検索ワード: {{ $keyword }}</p>
-      @endif
+        <!-- 検索ワードが存在する場合に検索ワードを表示 -->
+        <!-- != は「異なる」を意味する比較演算子 -->
+        @if (!empty($keyword))
+        <p>検索ワード: {{ $keyword }}</p>
+        @endif
+      </form>
     </div>
   </div>
 

@@ -22,6 +22,7 @@ class PostsController extends Controller
     // whereIn('user_id', ...) で、上記で取得したIDのいずれかに一致する投稿のみを取得
     $posts = Post::with('user')
         ->whereIn('user_id', array_merge([$user_id], $following_ids))
+        ->orderBy('created_at', 'desc')
         ->get();
 
     //(posts/index.blade.php)という"ビュー"ファイルを直接見に行く(URLはたたきに行っていない)
@@ -65,6 +66,10 @@ class PostsController extends Controller
     // $id は、ルート（URL）から渡されるパラメータ。このIDを使って、データベースから編集対象のレコードを特定する
   public function edit(Request $request, $id){
 
+    // バリデーション
+    $request->validate([
+      'post' => 'required|string|min:1|max:150', // 投稿内容は必須、最小1文字、最大150文字
+    ]);
     // 投稿を取得
     $post = Post::where('id', $id)->first();
     // 投稿フォームから編集して送信された内容を取得
@@ -89,7 +94,10 @@ class PostsController extends Controller
       // with('user') は、リレーションを使って投稿に紐づくユーザー情報を一緒に取得するメソッド
       // Postモデルには Userモデルへのリレーション（user() メソッド）が定義されている
       // whereIn() で、Postsテーブルの'user_id'の中で$following_id(フォローしているユーザー)を取得
-    $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+    $posts = Post::with('user')
+      ->whereIn('user_id', $following_id)
+      ->orderBy('created_at', 'desc') // 新しい順に並び替え
+      ->get();
 
     // フォローしているユーザーのidを元に、"フォローしているユーザーの全情報" を取得
       // whereIn() で、usersテーブルの'id'の中で$following_id(フォローしているユーザー)を取得
@@ -110,7 +118,10 @@ class PostsController extends Controller
       // with('user') は、リレーションを使って投稿に紐づくユーザー情報を一緒に取得するメソッド
       // Postモデルには Userモデルへのリレーション（user() メソッド）が定義されている
       // whereIn() で、Postsテーブルの'user_id'の中で$follower_id(フォローしているユーザー)を取得
-    $posts = Post::with('user')->whereIn('user_id', $followed_id)->get();
+    $posts = Post::with('user')
+      ->whereIn('user_id', $followed_id)
+      ->orderBy('created_at', 'desc') // 新しい順に並び替え
+      ->get();
 
     // フォローされているユーザーのidを元に、"フォローされているユーザーの全情報" を取得
     // whereIn() で、usersテーブルの'id'の中で$follower_id(フォローされているユーザー)を取得

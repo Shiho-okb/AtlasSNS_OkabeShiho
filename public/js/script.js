@@ -41,3 +41,11 @@ $(function () {
     $('.accordion-button').toggleClass('open');
   });
 });
+
+
+$(function () {
+  $('#fileSelect').on('click', function (e) {
+    e.preventDefault(); // デフォルトのボタン動作を無効化
+    $('#fileElem').click(); // 非表示のfile inputをトリガー
+  });
+});

@@ -5,11 +5,23 @@
   <h2>新規ユーザー登録</h2>
 
   <div class="form">
+    {{-- エラーメッセージの表示 --}}
+    @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
+
+    <!-- oldで入力保持 -->
     {{ Form::label('ユーザー名') }}
-    {{ Form::text('username',null,['class' => 'input']) }}
+    {{ Form::text('username', old('username'), ['class' => 'input']) }}
 
     {{ Form::label('メールアドレス') }}
-    {{ Form::email('email',null,['class' => 'input']) }}
+    {{ Form::email('email', old('email'), ['class' => 'input']) }}
 
     {{ Form::label('パスワード') }}
     {{ Form::password('password', ['class' => 'input']) }}
@@ -24,10 +36,7 @@
     <p><a href="login">ログイン画面へ戻る</a></p>
   </div>
 
-
   {!! Form::close() !!}
-
-
 </x-logout-layout>
 
 
