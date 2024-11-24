@@ -398,6 +398,10 @@ textarea::placeholder {
     margin: 0 auto;
 }
 
+.user-list table:last-child {
+    margin-bottom: 40px;
+}
+
 .user-list tr {
     display: flex;
     align-items: center;
@@ -413,17 +417,16 @@ textarea::placeholder {
     width: 130px;
 }
 
+.user-list tr td:nth-child(2) {
+    width: 300px;
+}
+
 .user-list p {
     font-size: 20px;
-    width: 100px;
 }
 
 .user-item {
-    margin-right: 25px;
-}
-
-.follow-button {
-    padding-left: 200px;
+    width: 70px;
 }
 
 

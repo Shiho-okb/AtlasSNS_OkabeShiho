@@ -7,7 +7,7 @@
           <!-- Laravelの制御構文 -->
           <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
           <td>
-            <div class="user-icon"><img src="{{ asset('images/' . $user->icon_image) }}" alt="ユーザーアイコン"></div>
+            <div class="user-icon"><img src="{{ asset('storage/images/' . $user->icon_image) }}" alt="ユーザーアイコン"></div>
           </td>
           <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
           <td>
@@ -42,7 +42,7 @@
         <!-- Laravelの制御構文 -->
         <!-- userがPost.php（モデル）に定義したメソッドで、icon_imageがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
         <td>
-          <div class="user-icon"><img src="{{ asset('images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
+          <div class="user-icon"><img src="{{ asset('storage/images/' . $post->user->icon_image) }}" alt="ユーザーアイコン"></div>
         </td>
         <!-- userがPost.php（モデル）に定義したメソッドで、usernameがテーブルのカラム名(Postsテーブルと紐づいているユーザー名が表示される) -->
         <td class="post">

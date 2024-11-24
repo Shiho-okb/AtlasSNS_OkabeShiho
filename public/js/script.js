@@ -44,8 +44,19 @@ $(function () {
 
 
 $(function () {
+  // ファイル選択ボタンがクリックされたとき
   $('#fileSelect').on('click', function (e) {
     e.preventDefault(); // デフォルトのボタン動作を無効化
     $('#fileElem').click(); // 非表示のfile inputをトリガー
+  });
+
+  // ファイルが選択されたとき
+  $('#fileElem').on('change', function () {
+    const file = this.files[0]; // 選択されたファイルを取得
+    if (file) {
+      $('#fileSelect').text(file.name); // ボタンの文字をファイル名に変更
+    } else {
+      $('#fileSelect').text('ファイルを選択'); // 初期メッセージに戻す
+    }
   });
 });
